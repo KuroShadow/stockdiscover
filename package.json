@@ -1,0 +1,22 @@
+{
+  "name": "stockdiscover",
+  "version": "1.0.0",
+  "description": "discover new stocks",
+  "main": "service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KuroShadow/stockdiscover.git"
+  },
+  "keywords": [
+    "uThought"
+  ],
+  "author": "Shantini West",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/KuroShadow/stockdiscover/issues"
+  },
+  "homepage": "https://github.com/KuroShadow/stockdiscover#readme"
+}
