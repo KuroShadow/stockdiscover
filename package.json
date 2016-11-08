@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/KuroShadow/stockdiscover/issues"
   },
-  "homepage": "https://github.com/KuroShadow/stockdiscover#readme"
+  "homepage": "https://github.com/KuroShadow/stockdiscover#readme",
+  "dependencies": {
+    "restler": "^3.4.0"
+  }
 }

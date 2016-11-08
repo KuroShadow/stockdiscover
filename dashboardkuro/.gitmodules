@@ -1,0 +1,3 @@
+[submodule "packages/atlassian"]
+	path = packages/atlassian
+	url = https://bitbucket.org/atlassian/atlasboard-atlassian-package
