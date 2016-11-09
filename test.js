@@ -6,7 +6,7 @@ var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost/stockdiscover';
 var Db = require('mongodb').Db;
-
+var iexists = false;
 var dbx = new Db('stockdiscover', new Server('localhost',27017));
 var db = dbx.open();
 discover_stock();
@@ -50,19 +50,31 @@ function process_result(theresult)
    }
 
 }
+
+function firstWord(thevalue)
+{
+  var thewords;
+  vs = thevalue.toString();
+  thewords = vs.split(' ');
+  return(thewords[0]);
+
+}
 function parse_stock_lookup(thestock)
 {
-
-      thekey = thestock.Exchange + "-" + thestock.Symbol;
-      existing = dbx.collection('stock').find( {key: thekey} );
-      console.log('Existing ' + existing.count)
-      if (existing.count > 0){
-        console(console.log("Duplicate " + thekey));
-        return;
+  var thekey;
+  thekey  = firstWord(thestock.Exchange) + "-" + thestock.Symbol;
+  console.log(thekey);
+  dbx.collection('stock').findOne({key: thekey}, function(err, doc) {
+      if( doc == null ) {
+          // do whatever you need to do if it's not there
+         console.log("Adding " + thekey);
+         var document = {key:thekey, symbol:thestock.Symbol,
+                         name:thestock.Name, exchange:thestock.Exchange };
+         dbx.collection('stock').insert(document, {w: 1});
+      } else {
+          // do whatever you need to if it is there
+        console.log("Duplicate " + thekey);
       }
-      console.log("Adding " + thekey);
-      var document = {key:thekey, symbol:thestock.Symbol, name:thestock.Name, exchange:thestock.Exchange };
-      dbx.collection('stock').insert(document, {w: 1}, function(err, records){
-});
 
+  });
 }
